@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+
+<h2>Meus Links Favoritos</h2>
+
+<form method="GET" class="mb-3">
+    <input type="text"
+           name="busca"
+           class="form-control"
+           placeholder="Pesquisar..."
+           value="{{ busca }}">
+</form>
+
+<form action="/adicionar" method="POST" class="card p-3 mb-4">
+
+    <input type="text"
+           name="nome"
+           class="form-control mb-2"
+           placeholder="Nome"
+           required>
+
+    <input type="url"
+           name="url"
+           class="form-control mb-2"
+           placeholder="URL"
+           required>
+
+    <input type="text"
+           name="categoria"
+           class="form-control mb-2"
+           placeholder="Categoria">
+
+    <button class="btn btn-primary">
+        Salvar
+    </button>
+
+</form>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for link in links %}
+
+        <tr>
+            <td>
+                <a href="{{ link.url }}" target="_blank">
+                    {{ link.nome }}
+                </a>
+            </td>
+
+            <td>
+                {{ link.categoria }}
+            </td>
+
+            <td>
+
+                <a href="/editar/{{ link.id }}" class="btn btn-warning btn-sm">
+                    Editar
+                </a>
+
+                <a href="/excluir/{{ link.id }}" class="btn btn-danger btn-sm">
+                    Excluir
+                </a>
+
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
