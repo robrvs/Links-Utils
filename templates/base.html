@@ -12,6 +12,16 @@
     {% block conteudo %}
     {% endblock %}
 </div>
-
+<script>
+function copiarLink(url) {
+    navigator.clipboard.writeText(url)
+        .then(() => {
+            alert("Link copiado para a área de transferência!");
+        })
+        .catch(err => {
+            console.error("Erro ao copiar:", err);
+        });
+}
+</script>
 </body>
 </html>
